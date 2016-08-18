@@ -75,6 +75,17 @@ class Curl extends Errorable{
         return $this;
     }
 
+    public function getHeaders($key=null)
+    {
+        if(is_null($key)) {
+            return $this->headers;
+        }
+        if(isset($this->headers[$key])) {
+            return $this->headers[$key];
+        }
+        return '';
+    }
+
     protected function setRequestHeaders() {
         $headers = array();
         if(empty($this->headers)) {
@@ -185,6 +196,7 @@ class Curl extends Errorable{
         }
         $this->checkSsl($url);
         $this->ch = curl_init($url);
+        $this->setRequestHeaders();
         $option = $this->getOption(null);
         if(is_array($option)) {
             if(function_exists('curl_setopt_array')) {
