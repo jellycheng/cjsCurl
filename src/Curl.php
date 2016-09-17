@@ -211,7 +211,7 @@ class Curl extends Errorable{
         if ($error = curl_errno($this->ch)) {
             $this->setErrno($error);
             $this->setErrmsg(curl_error($this->ch));
-            return '';
+            return $this;
         }
         curl_close($this->ch);
         return $this->setResponse($content);

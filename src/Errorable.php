@@ -25,15 +25,16 @@ class Errorable {
 
     protected function setErr($errno, $errmsg)
     {
-        $this->errmsg = $errmsg;
         $this->errno  = $errno;
+        $this->errmsg = $errmsg;
         return $this;
     }
 
     protected function clearErr()
     {
-        $this->errmsg = '';
         $this->errno  = 0;
+        $this->errmsg = '';
+
     }
 
 }
