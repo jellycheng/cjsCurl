@@ -3,6 +3,8 @@ namespace CjsCurl;
 
 class Curl extends Errorable{
 
+    const REQUEST_URL_NO_EXISTS = 9999;
+
     protected $options = array(
                                 CURLOPT_TIMEOUT=>5,
                                 CURLOPT_CONNECTTIMEOUT => 15,
@@ -14,7 +16,7 @@ class Curl extends Errorable{
 
     protected $url = null;
     protected $ch = '';
-    protected $headers='';
+    protected $headers=[];
     protected $responseContent = '';
 
     public function __construct($url = null) {
@@ -190,8 +192,7 @@ class Curl extends Errorable{
     public function request() {
         $url = $this->getUrl();
         if(!$url) {
-            $this->setErrno(9999);
-            $this->setErrmsg("请求地址不能为空");
+            $this->setErr(self::REQUEST_URL_NO_EXISTS, "请求地址不能为空");
             return $this;
         }
         $this->checkSsl($url);
@@ -209,8 +210,7 @@ class Curl extends Errorable{
         }
         $content = curl_exec($this->ch);
         if ($error = curl_errno($this->ch)) {
-            $this->setErrno($error);
-            $this->setErrmsg(curl_error($this->ch));
+            $this->setErr($error, curl_error($this->ch));
             return $this;
         }
         curl_close($this->ch);
