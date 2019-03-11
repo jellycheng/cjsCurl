@@ -2,8 +2,9 @@
 namespace CjsCurl;
 
 class Errorable {
-    protected $errno=0;
-    protected $errmsg = '';
+
+    protected $errno = 0; //0表正常，非0表示发生错误
+    protected $errmsg = '';//错误信息
 
     protected function setErrno($errno) {
         $this->errno = $errno;

@@ -1,5 +1,5 @@
 <?php
-require dirname(__DIR__) . '/vendor/autoload.php';
+require __DIR__ . '/common.php';
 
 echo "curl demo" . PHP_EOL;
 

@@ -1,5 +1,5 @@
 <?php
-require dirname(__DIR__) . '/vendor/autoload.php';
+require __DIR__ . '/common.php';
 
 //登录
 $username = "13798999993";
@@ -9,7 +9,7 @@ $postData = array(
     'pwd'=>$pwd,
     'type'=>1
 );
-$url = 'http://api.dev.qianguopai.com/1.0/user/login';
+$url = 'http://devapi.nfangbian.com/login/index';
 $curlObj = \CjsCurl\Curl::boot()->setHeaders(array('Content-Type'=>'application/x-www-form-urlencoded', 'APP-TYPE'=>'buy',))->post($url, $postData);
 
 //var_export($curlObj->getOption());
